@@ -1,0 +1,26 @@
+[
+  {
+    "datetime": "2026-06-26 21:00",
+    "ai_name": "ChatGPT",
+    "event_type": "開始",
+    "task_title": "AI作業管制塔の初期設定",
+    "detail": "GitHub Pagesで見られるAI作業管制塔を作成開始",
+    "blocker": "なし",
+    "next_action": "GitHub Pages設定を行う",
+    "reset_at": "",
+    "output_url": "",
+    "memo": "現在状況と活動履歴をJSONで管理する"
+  },
+  {
+    "datetime": "2026-06-26 21:20",
+    "ai_name": "ChatGPT",
+    "event_type": "作業中",
+    "task_title": "data/current.json作成",
+    "detail": "現在のAI状況を表示するためのJSONファイルを作成",
+    "blocker": "なし",
+    "next_action": "logs/2026-06-26.jsonを作成する",
+    "reset_at": "",
+    "output_url": "",
+    "memo": ""
+  }
+]
