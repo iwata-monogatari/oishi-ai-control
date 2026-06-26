@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大石AI作業管制塔</title>
+  <meta name="description" content="AIの作業状態、利用上限、リセット予定、1日の活動履歴を見える化するための静的ダッシュボードです。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Oishi AI Control Tower</p>
+        <h1>大石AI作業管制塔</h1>
+        <p class="lead">AIのみなさんの「今の状態」「利用上限」「今日の活動履歴」を1画面で確認します。</p>
+      </div>
+      <div class="header-panel" aria-label="更新情報">
+        <span class="panel-label">表示日</span>
+        <strong id="viewDateText">読み込み中</strong>
+        <span class="panel-label">最終読み込み</span>
+        <strong id="loadedAtText">-</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="summary-grid" aria-label="本日の概要">
+      <article class="summary-card attention">
+        <span>確認待ち</span>
+        <strong id="countReview">0</strong>
+      </article>
+      <article class="summary-card danger">
+        <span>困り中</span>
+        <strong id="countBlocked">0</strong>
+      </article>
+      <article class="summary-card success">
+        <span>空きAI</span>
+        <strong id="countFree">0</strong>
+      </article>
+      <article class="summary-card limit">
+        <span>上限到達</span>
+        <strong id="countLimitHit">0</strong>
+      </article>
+      <article class="summary-card done">
+        <span>今日の完了</span>
+        <strong id="countDoneToday">0</strong>
+      </article>
+    </section>
+
+    <section class="toolbar" aria-label="操作">
+      <div class="date-control">
+        <label for="logDate">活動履歴の日付</label>
+        <input id="logDate" type="date" />
+        <button id="loadLogButton" type="button">読み込む</button>
+      </div>
+      <button id="refreshButton" type="button">再読み込み</button>
+    </section>
+
+    <section class="notice">
+      <strong>運用ルール：</strong>
+      個人名・住所・金額・未公開案件名・社内事情は書かず、作業名は「不動産査定資料」「HTML改修」などにぼかしてください。
+    </section>
+
+    <section class="section-block">
+      <div class="section-title-row">
+        <h2>現在のAI状況</h2>
+        <p>作業状態と利用上限を別々に管理します。</p>
+      </div>
+      <div id="currentGrid" class="ai-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="two-column">
+      <article class="section-block compact">
+        <h2>大石社長の確認が必要</h2>
+        <div id="reviewList" class="list-panel empty">確認待ちはありません。</div>
+      </article>
+      <article class="section-block compact">
+        <h2>利用上限・リセット待ち</h2>
+        <div id="limitList" class="list-panel empty">上限到達中のAIはありません。</div>
+      </article>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title-row">
+        <h2>活動履歴</h2>
+        <p>開始・途中経過・困り中・確認待ち・完了・上限到達を時系列で残します。</p>
+      </div>
+      <div id="logTimeline" class="timeline" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Static dashboard for GitHub Pages. Update <code>data/current.json</code> and <code>logs/YYYY-MM-DD.json</code>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
